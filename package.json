@@ -1,7 +1,7 @@
 {
-  "name": "autonomys-agent-template",
+  "name": "auto-agents",
   "version": "0.1.0",
-  "description": "template repository for autonomys-agents",
+  "description": "auto-agents agent project",
   "type": "module",
   "main": "dist/src/index.js",
   "repository": {
@@ -27,7 +27,7 @@
     "generate-certs": "tsx scripts/generate-certs.ts"
   },
   "dependencies": {
-    "@autonomys/agent-core": "^0.1.1",
+    "@autonomys/agent-core": "^0.1.2",
     "yargs": "^17.7.2"
   },
   "devDependencies": {

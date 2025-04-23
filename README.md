@@ -1,4 +1,6 @@
-# Autonomys Agent Template
+# auto-agents
+
+auto-agents project
 
 This template repository provides a foundation for building AI agents using the `@autonomys/agent-core` package.
 
@@ -43,33 +45,39 @@ autonomys-agent-template/
 ## Getting Started
 
 1. Install dependencies:
+
    ```bash
    yarn install
    ```
+
    - Windows users will need to install Visual Studio C++ Redistributable. They can be found here: https://aka.ms/vs/17/release/vc_redist.x64.exe
 
-
 2. Create a character configuration:
+
    ```bash
    yarn create-character your_character_name
    ```
+
    This will create a new character with the necessary configuration files based on the example template.
 
 3. Configure your character:
+
    - Edit `characters/your_character_name/config/.env` with your API keys and credentials
    - Customize `characters/your_character_name/config/config.yaml` for agent behavior
    - Define personality in `characters/your_character_name/config/your_character_name.yaml`
 
 4. Generate SSL certificates (required for API server):
+
    ```bash
    yarn generate-certs
    ```
 
 5. Run the agent:
+
    ```bash
    # Specify a workspace path
    yarn start your_character_name --workspace=/path/to/workspace
-   
+
    # Run in headless mode (no API server)
    yarn start your_character_name --workspace=/path/to/workspace --headless
    ```
@@ -79,6 +87,7 @@ autonomys-agent-template/
 You can run multiple characters simultaneously, each with their own configuration and personality:
 
 1. Create multiple character configurations:
+
    ```bash
    yarn create-character alice
    yarn create-character bob
@@ -87,10 +96,11 @@ You can run multiple characters simultaneously, each with their own configuratio
 2. Configure each character separately with different personalities and API settings.
 
 3. Run each character in a separate terminal session:
+
    ```bash
    # Terminal 1
    yarn start alice --workspace=/path/to/workspace
-   
+
    # Terminal 2
    yarn start bob --workspace=/path/to/workspace
    ```
@@ -118,12 +128,14 @@ Custom tools are built using the `DynamicStructuredTool` class from LangChain, w
 - **Structured outputs**: Return consistent data structures from your tools
 
 The example tools serve as templates that can be adapted for various use cases:
+
 - External API integrations
 - Data processing and analysis
 - User interaction mechanisms
 - Service integrations
 
 To create your own tools:
+
 1. Define a function that returns a `DynamicStructuredTool` instance
 2. Specify the tool's name, description, and parameter schema
 3. Implement the functionality in the `func` property
