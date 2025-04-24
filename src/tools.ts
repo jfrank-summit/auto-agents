@@ -1,8 +1,8 @@
 import {
+  createAllSchedulerTools,
+  createSlackAgent,
   createTwitterAgent,
   createTwitterApi,
-  createSlackAgent,
-  createAllSchedulerTools,
   LLMConfiguration,
   ModelConfigurations,
 } from '@autonomys/agent-core';
