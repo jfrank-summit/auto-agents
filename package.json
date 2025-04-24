@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "@autonomys/agent-core": "0.2.1",
+    "langchain": "^0.3.24",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
