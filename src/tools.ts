@@ -26,6 +26,7 @@ export const modelConfigurations: ModelConfigurations = {
   messageSummaryModelConfig: smallModel,
   finishWorkflowModelConfig: smallModel,
 };
+
 // Define custom tool creators
 export const createTwitterTool = async (configInstance: ConfigInstance) => {
   const { twitterConfig, characterConfig } = configInstance.config;
