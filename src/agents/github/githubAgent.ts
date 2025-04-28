@@ -14,11 +14,12 @@ import { createGitHubTools, type Toolset } from '../../tools/github-mcp/index.js
 import { createGithubPrompts } from './prompts.js';
 import { GithubAgentConfig, GithubAgentOptions } from './types.js';
 
+const logger = createLogger('github-agent-tool');
+
 // GitHub-specific default configuration values
 const defaultGithubOptions = {
   namespace: 'github',
   toolsets: ['all'] as Toolset[],
-  logger: () => createLogger('github-workflow'),
 };
 
 /**
@@ -40,7 +41,6 @@ const createGithubAgentConfig = async (
     toolsets: options?.toolsets ?? defaultGithubOptions.toolsets,
     recursionLimit: options?.recursionLimit ?? 100,
     githubToken,
-    logger: options?.logger ?? defaultGithubOptions.logger(),
   };
 
   const {
@@ -107,10 +107,10 @@ export const createGithubAgent = (character: Character, options?: GithubAgentOpt
           { messages },
           { threadId: 'github_workflow_state' },
         );
-        options?.logger?.info('Github workflow result:', { result });
+        logger.info('Github workflow result:', { result });
         return result;
       } catch (error) {
-        options?.logger?.error('Github workflow error:', error);
+        logger.error('Github workflow error:', error);
         throw error;
       }
     },
