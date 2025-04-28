@@ -7,8 +7,10 @@ import {
   ModelConfigurations,
 } from '@autonomys/agent-core';
 
+import { createGithubAgent } from './agents/github/githubAgent.js';
 import { createExperienceConfig } from './config/experiences.js';
 import { ConfigInstance } from './config/types.js';
+import { Toolset } from './tools/github-mcp/index.js';
 
 const schedulerTools = createAllSchedulerTools();
 export const bigModel: LLMConfiguration = {
@@ -64,4 +66,19 @@ export const createSlackTool = async (configInstance: ConfigInstance) => {
     monitoringConfig,
   });
   return slackAgent;
+};
+
+export const createGithubTool = async (
+  configInstance: ConfigInstance,
+  toolsets: Toolset[] = ['all'],
+) => {
+  const { githubConfig, characterConfig } = configInstance.config;
+  if (!githubConfig || !githubConfig.GITHUB_TOKEN) {
+    return undefined;
+  }
+  const githubAgent = createGithubAgent(characterConfig, {
+    githubToken: githubConfig.GITHUB_TOKEN,
+    toolsets,
+  });
+  return githubAgent;
 };
