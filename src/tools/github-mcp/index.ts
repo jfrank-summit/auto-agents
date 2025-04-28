@@ -3,14 +3,27 @@ import { StructuredToolInterface } from '@langchain/core/tools';
 import { StdioServerParameters } from '@modelcontextprotocol/sdk/client/stdio.js';
 import { ChildProcess, spawn } from 'child_process';
 
+export type Toolset =
+  | 'repos'
+  | 'issues'
+  | 'users'
+  | 'pull_requests'
+  | 'code_security'
+  | 'experiments'
+  | 'all';
 // Start the GitHub MCP server via Docker and return the process
-export const startGithubMcpServer = (githubToken: string): ChildProcess => {
+export const startGithubMcpServer = (
+  githubToken: string,
+  toolsets: Toolset[] = ['all'],
+): ChildProcess => {
   const dockerArgs = [
     'run',
     '-i',
     '--rm',
     '-e',
     `GITHUB_PERSONAL_ACCESS_TOKEN=${githubToken}`,
+    '-e',
+    `TOOLSETS=${toolsets.join(',')}`,
     'ghcr.io/github/github-mcp-server',
   ];
   return spawn('docker', dockerArgs, {
@@ -18,8 +31,9 @@ export const startGithubMcpServer = (githubToken: string): ChildProcess => {
   });
 };
 
-export const createGithubTools = async (
+export const createGitHubTools = async (
   githubToken: string,
+  toolsets: Toolset[] = ['all'],
 ): Promise<StructuredToolInterface[]> => {
   const githubServerParams: StdioServerParameters = {
     command: 'docker',
@@ -29,6 +43,8 @@ export const createGithubTools = async (
       '--rm',
       '-e',
       `GITHUB_PERSONAL_ACCESS_TOKEN=${githubToken}`,
+      '-e',
+      `TOOLSETS=${toolsets.join(',')}`,
       'ghcr.io/github/github-mcp-server',
     ],
     env: {},
