@@ -6,6 +6,7 @@ import {
   LLMConfiguration,
   ModelConfigurations,
 } from '@autonomys/agent-core';
+
 import { createGithubAgent } from './agents/github/githubAgent.js';
 import { createExperienceConfig } from './config/experiences.js';
 import { ConfigInstance } from './config/types.js';

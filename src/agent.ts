@@ -1,7 +1,8 @@
 import { createFirecrawlTools, createWebSearchTool } from '@autonomys/agent-core';
+
 import { createOrchestratorConfig } from './config/orchestrator.js';
 import { ConfigInstance } from './config/types.js';
-import { createSlackTool, createTwitterTool, createGithubTool } from './tools.js';
+import { createGithubTool, createSlackTool, createTwitterTool } from './tools.js';
 
 export const createAgentRunnerOptions = async (configInstance: ConfigInstance) => {
   const { config } = configInstance;

@@ -1,14 +1,15 @@
+import {
+  type Character,
+  createLogger,
+  createOrchestratorConfig,
+  createOrchestratorRunner,
+  registerOrchestratorRunner,
+  withApiLogger,
+} from '@autonomys/agent-core';
 import { HumanMessage } from '@langchain/core/messages';
 import { DynamicStructuredTool } from '@langchain/core/tools';
 import { z } from 'zod';
-import {
-  withApiLogger,
-  createLogger,
-  createOrchestratorRunner,
-  registerOrchestratorRunner,
-  type Character,
-  createOrchestratorConfig,
-} from '@autonomys/agent-core';
+
 import { createGitHubTools, type Toolset } from '../../tools/github-mcp/index.js';
 import { createGithubPrompts } from './prompts.js';
 import { GithubAgentConfig, GithubAgentOptions } from './types.js';
