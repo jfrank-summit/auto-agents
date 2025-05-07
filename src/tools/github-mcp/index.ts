@@ -1,7 +1,7 @@
 import { createLogger, createMcpClientTool } from '@autonomys/agent-core';
 import { StructuredToolInterface } from '@langchain/core/tools';
 import { StdioServerParameters } from '@modelcontextprotocol/sdk/client/stdio.js';
-import { ChildProcess, spawn } from 'child_process';
+
 
 export type Toolset =
   | 'repos'
@@ -11,30 +11,27 @@ export type Toolset =
   | 'code_security'
   | 'experiments'
   | 'all';
-// Start the GitHub MCP server via Docker and return the process
-export const startGithubMcpServer = (
-  githubToken: string,
-  toolsets: Toolset[] = ['all'],
-): ChildProcess => {
-  const dockerArgs = [
-    'run',
-    '-i',
-    '--rm',
-    '-e',
-    `GITHUB_PERSONAL_ACCESS_TOKEN=${githubToken}`,
-    '-e',
-    `TOOLSETS=${toolsets.join(',')}`,
-    'ghcr.io/github/github-mcp-server',
-  ];
-  return spawn('docker', dockerArgs, {
-    stdio: ['pipe', 'pipe', 'inherit'],
-  });
-};
 
 export const createGitHubTools = async (
   githubToken: string,
   toolsets: Toolset[] = ['all'],
 ): Promise<StructuredToolInterface[]> => {
+  // Common Docker install locations
+  const extraPaths = [
+    '/usr/local/bin',           // macOS, Linux (Homebrew, standard)
+    '/opt/homebrew/bin',        // macOS (Apple Silicon Homebrew)
+    'C:\\Program Files\\Docker\\Docker\\resources\\bin', // Windows default
+    'C:\\ProgramData\\DockerDesktop\\version-bin',       // Windows (newer Docker Desktop)
+  ];
+
+  // Build a platform-appropriate PATH string
+  const separator = process.platform === 'win32' ? ';' : ':';
+  const currentPath = process.env.PATH || '';
+  const newPath = extraPaths
+    .filter(p => !currentPath.includes(p))
+    .concat([currentPath])
+    .join(separator);
+
   const githubServerParams: StdioServerParameters = {
     command: 'docker',
     args: [
@@ -47,7 +44,7 @@ export const createGitHubTools = async (
       `TOOLSETS=${toolsets.join(',')}`,
       'ghcr.io/github/github-mcp-server',
     ],
-    env: {},
+    env: { ...process.env, PATH: newPath },
   };
   const logger = createLogger('github-mcp');
   const tools = await createMcpClientTool('github-mcp', '0.0.1', githubServerParams);
