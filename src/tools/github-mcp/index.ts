@@ -2,7 +2,6 @@ import { createLogger, createMcpClientTool } from '@autonomys/agent-core';
 import { StructuredToolInterface } from '@langchain/core/tools';
 import { StdioServerParameters } from '@modelcontextprotocol/sdk/client/stdio.js';
 
-
 export type Toolset =
   | 'repos'
   | 'issues'
@@ -18,10 +17,10 @@ export const createGitHubTools = async (
 ): Promise<StructuredToolInterface[]> => {
   // Common Docker install locations
   const extraPaths = [
-    '/usr/local/bin',           // macOS, Linux (Homebrew, standard)
-    '/opt/homebrew/bin',        // macOS (Apple Silicon Homebrew)
+    '/usr/local/bin', // macOS, Linux (Homebrew, standard)
+    '/opt/homebrew/bin', // macOS (Apple Silicon Homebrew)
     'C:\\Program Files\\Docker\\Docker\\resources\\bin', // Windows default
-    'C:\\ProgramData\\DockerDesktop\\version-bin',       // Windows (newer Docker Desktop)
+    'C:\\ProgramData\\DockerDesktop\\version-bin', // Windows (newer Docker Desktop)
   ];
 
   // Build a platform-appropriate PATH string
