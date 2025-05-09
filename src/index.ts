@@ -1,4 +1,5 @@
 import {
+  createApiServer,
   createLogger,
   createOrchestratorRunner,
   getConfig,
@@ -10,7 +11,7 @@ import {
 } from '@autonomys/agent-core';
 
 import { createAgentRunnerOptions } from './agent.js';
-
+import { createApiServerConfig } from './config/api.js';
 const configInstance = await getConfig();
 if (!configInstance) {
   throw new Error('Config instance not found');
@@ -36,6 +37,8 @@ const orchestratorRunner = (() => {
 
 // Main function to run the application
 const main = async () => {
+  const apiServerConfig = createApiServerConfig(configInstance);
+  const _apiServer = createApiServer(apiServerConfig);
   try {
     const logger = createLogger('app');
     logger.info('Initializing orchestrator runner...');
