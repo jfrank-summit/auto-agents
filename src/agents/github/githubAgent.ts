@@ -40,6 +40,7 @@ const createGithubAgentConfig = async (
     namespace: options?.namespace ?? defaultGithubOptions.namespace,
     toolsets: options?.toolsets ?? defaultGithubOptions.toolsets,
     recursionLimit: options?.recursionLimit ?? 100,
+    stopCounterLimit: options?.stopCounterLimit ?? 3,
     githubToken,
   };
 
@@ -50,7 +51,6 @@ const createGithubAgentConfig = async (
     monitoringConfig,
     characterDataPathConfig,
     apiConfig,
-    llmConfig,
   } = await createOrchestratorConfig(character, options);
 
   // Get GitHub-specific tools and prompts
@@ -72,7 +72,6 @@ const createGithubAgentConfig = async (
     monitoringConfig,
     characterDataPathConfig,
     apiConfig,
-    llmConfig,
   };
 };
 
