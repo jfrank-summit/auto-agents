@@ -27,10 +27,7 @@
     "generate-certs": "tsx scripts/generate-certs.ts"
   },
   "dependencies": {
-    "@autonomys/agent-core": "0.3.0",
-    "@langchain/core": "^0.3.55",
-    "@langchain/deepseek": "^0.0.1",
-    "firecrawl-mcp": "^1.7.2",
+    "@autonomys/agent-core": "0.3.1",
     "langchain": "^0.3.24",
     "yargs": "^17.7.2"
   },
