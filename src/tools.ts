@@ -48,6 +48,7 @@ export const createTwitterTool = async (configInstance: ConfigInstance) => {
     postTweets: twitterConfig.POST_TWEETS,
     experienceConfig,
     monitoringConfig,
+    stopCounterLimit: 1,
     modelConfigurations: twitterConfig.model_configurations,
   });
   return twitterAgent;

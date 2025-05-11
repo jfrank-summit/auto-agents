@@ -23,6 +23,7 @@ export const createOrchestratorConfig = async (configInstance: ConfigInstance, t
     experienceConfig,
     monitoringConfig,
     prompts,
+    stopCounterLimit: 1,
     characterDataPathConfig: {
       dataPath: characterPath,
     },

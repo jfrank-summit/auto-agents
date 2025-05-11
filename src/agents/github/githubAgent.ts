@@ -40,7 +40,7 @@ const createGithubAgentConfig = async (
     namespace: options?.namespace ?? defaultGithubOptions.namespace,
     toolsets: options?.toolsets ?? defaultGithubOptions.toolsets,
     recursionLimit: options?.recursionLimit ?? 100,
-    stopCounterLimit: options?.stopCounterLimit ?? 3,
+    stopCounterLimit: options?.stopCounterLimit ?? 1,
     githubToken,
   };
 
