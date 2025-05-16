@@ -1,0 +1,13 @@
+{
+    "name": "firecrawl-mcp",
+    "version": "0.1.0",
+    "description": "Tools for crawling websites via Firecrawl",
+    "author": "Jeremy Frank",
+    "main": "index.ts",
+    "dependencies": {
+      "@langchain/core": "0.3.55",
+      "@autonomys/agent-core": "^0.3.1",
+      "@langchain/mcp-adapters": "^0.4.2"
+    },
+    "keywords": ["firecrawl", "crawl", "website"]
+  }
