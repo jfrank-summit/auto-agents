@@ -3116,23 +3116,26 @@ __metadata:
   dependencies:
     "@autonomys/agent-core": "npm:0.3.1"
     "@eslint/js": "npm:^9.18.0"
+    "@langchain/core": "npm:0.3.55"
     "@typescript-eslint/eslint-plugin": "npm:^8.29.0"
     "@typescript-eslint/parser": "npm:^8.29.0"
+    axios: "npm:^1.7.7"
+    cheerio: "npm:^1.0.0"
     eslint: "npm:^9.23.0"
     eslint-config-prettier: "npm:^10.1.1"
     eslint-plugin-prettier: "npm:^5.2.6"
     eslint-plugin-simple-import-sort: "npm:^12.1.1"
     globals: "npm:^16.0.0"
-    langchain: "npm:^0.3.24"
     prettier: "npm:^3.5.3"
     tsx: "npm:^4.7.1"
     typescript: "npm:^5.3.3"
     typescript-eslint: "npm:^8.29.0"
     yargs: "npm:^17.7.2"
+    zod: "npm:^3.23.8"
   languageName: unknown
   linkType: soft
 
-"axios@npm:^1.6.8, axios@npm:^1.7.9, axios@npm:^1.8.3, axios@npm:^1.8.4":
+"axios@npm:^1.6.8, axios@npm:^1.7.7, axios@npm:^1.7.9, axios@npm:^1.8.3, axios@npm:^1.8.4":
   version: 1.9.0
   resolution: "axios@npm:1.9.0"
   dependencies:
@@ -5803,7 +5806,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"langchain@npm:>=0.2.3 <0.3.0 || >=0.3.4 <0.4.0, langchain@npm:^0.3.24":
+"langchain@npm:>=0.2.3 <0.3.0 || >=0.3.4 <0.4.0":
   version: 0.3.24
   resolution: "langchain@npm:0.3.24"
   dependencies:

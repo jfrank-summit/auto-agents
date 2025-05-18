@@ -1,0 +1,14 @@
+{
+  "name": "web-search-tool",
+  "version": "0.1.0",
+  "description": "Tool for searching the web via SerpAPI",
+  "author": "Jeremy Frank",
+  "main": "index.ts",
+  "dependencies": {
+    "@langchain/core": "0.3.55",
+    "axios": "^1.7.7",
+    "cheerio": "^1.0.0",
+    "zod": "^3.23.8"
+  },
+  "keywords": ["web-search", "search", "web"]
+}
