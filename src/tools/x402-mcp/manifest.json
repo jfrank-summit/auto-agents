@@ -1,0 +1,16 @@
+{
+  "name": "x402-mcp",
+  "version": "1.0.0",
+  "description": "Tools for accessing paid APIs via x402 payment protocol",
+  "author": "Jeremy Frank",
+  "main": "index.ts",
+  "dependencies": {
+    "@langchain/core": "0.3.55",
+    "@autonomys/agent-core": "^0.3.1",
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "axios": "^1.7.7",
+    "viem": "^2.0.0",
+    "x402-axios": "^0.1.0"
+  },
+  "keywords": ["x402", "payment", "mcp", "api"]
+}

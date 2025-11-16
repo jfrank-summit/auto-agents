@@ -24,13 +24,16 @@
     "lint": "eslint \"src/**/*.{js,ts}\"",
     "lint:fix": "eslint \"src/**/*.{js,ts}\" --fix",
     "create-character": "tsx scripts/create-character.ts",
-    "generate-certs": "tsx scripts/generate-certs.ts"
+    "generate-certs": "tsx scripts/generate-certs.ts",
+    "test-x402": "tsx scripts/test-x402.ts"
   },
   "dependencies": {
     "@autonomys/agent-core": "0.3.1",
     "@langchain/core": "0.3.55",
     "axios": "^1.7.7",
     "cheerio": "^1.0.0",
+    "viem": "^2.39.0",
+    "x402-axios": "^0.7.0",
     "yargs": "^17.7.2",
     "zod": "^3.23.8"
   },
