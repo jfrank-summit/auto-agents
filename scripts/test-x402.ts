@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 /**
- * Test script for x402 MCP wrapper
+ * Test script for x402 tool
  *
  * Prerequisites:
  * 1. Install dependencies: yarn add viem x402-axios
@@ -12,21 +12,46 @@
  * - Navigate to: examples/typescript/servers/express
  * - Run: npm install && npm start
  * - Server will run on http://localhost:4021
+ *
+ * Usage:
+ *   yarn test-x402 <character_name>
  */
+
+import { getConfig } from '@autonomys/agent-core';
 
 import { createX402Tools } from '../src/tools/x402-mcp/index.js';
 
-const PRIVATE_KEY = process.env.PRIVATE_KEY || '';
+const characterName = process.argv[2];
 const TEST_URL = process.env.TEST_URL || 'http://localhost:4021/weather';
 
+if (!characterName) {
+  console.error('❌ Error: Character name is required');
+  console.error('   Usage: yarn test-x402 <character_name>');
+  process.exit(1);
+}
+
+// Load config for the character
+const configInstance = await getConfig();
+if (!configInstance) {
+  console.error('❌ Error: Failed to load config');
+  process.exit(1);
+}
+
+// Try to get PRIVATE_KEY from blockchainConfig (for x402 payments)
+const PRIVATE_KEY =
+  (configInstance.config.blockchainConfig?.PRIVATE_KEY as string) ||
+  (process.env.PRIVATE_KEY as string) ||
+  '';
+
 if (!PRIVATE_KEY) {
-  console.error('❌ Error: PRIVATE_KEY environment variable is required');
-  console.error('   Set it with: export PRIVATE_KEY=0xYourPrivateKey');
+  console.error('❌ Error: PRIVATE_KEY not found');
+  console.error("   Set it in your character's .env file as PRIVATE_KEY=0xYourPrivateKey");
+  console.error('   Or set it as an environment variable: export PRIVATE_KEY=0xYourPrivateKey');
   process.exit(1);
 }
 
 async function testX402Tool() {
-  console.info('🚀 Testing x402 MCP wrapper...\n');
+  console.info('🚀 Testing x402 tool...\n');
 
   try {
     // Create the x402 tools
